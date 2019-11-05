@@ -7,10 +7,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    var clicks = 0
-    var clickerCount = 0
-    val clickerPrice = 10
-    val threads = mutableListOf<Thread>()
+    val clickerManager = ClickerManager()
+    val collector = Thread {
+        while(true) {
+            addClicks(clickerManager.collectClicks())
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,34 +20,18 @@ class MainActivity : AppCompatActivity() {
         addClicks(0)
         mainButton.setOnClickListener { v -> addClicks(1)}
         buyButton.setOnClickListener { v -> buyClicker() }
+        collector.start()
     }
 
     fun addClicks(amount: Int)
     {
-        clicks += amount
-        tvClicks.text = clicks.toString()
+        clickerManager.addClicks(amount)
+        tvClicks.text = clickerManager.clickCount.toString()
     }
 
     fun buyClicker()
     {
-        if (clicks >= clickerPrice)
-        {
-            clicks -= clickerPrice
-            addClicker()
-        }
-    }
-
-    fun addClicker()
-    {
-        clickerCount++
-        // TODO: should maybe limit this to a max number of threads and then distribute among them
-        val thread = Thread {
-            while(true) {
-                Thread.sleep(1000)
-                addClicks(1)
-            }
-        }
-        threads.add(threads.size, thread)
-        thread.start()
+        clickerManager.buyAutoClicker()
+        tvClicks.text = clickerManager.clickCount.toString()
     }
 }
