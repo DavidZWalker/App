@@ -23,9 +23,7 @@ class MainActivity : AppCompatActivity() {
     fun addClicks(amount: Int)
     {
         clicks += amount
-        tvClicks.post {
-            tvClicks.setText(clicks.toString())
-        }
+        tvClicks.text = clicks.toString()
     }
 
     fun buyClicker()
