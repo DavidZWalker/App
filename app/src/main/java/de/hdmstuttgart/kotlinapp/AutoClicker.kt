@@ -1,5 +1,7 @@
 package de.hdmstuttgart.kotlinapp
 
+import kotlinx.coroutines.delay
+
 class AutoClicker : Runnable {
 
     var price = 10

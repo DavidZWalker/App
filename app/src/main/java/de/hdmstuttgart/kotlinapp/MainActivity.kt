@@ -4,15 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
 
     val clickerManager = ClickerManager()
-    val collector = Thread {
-        while(true) {
-            addClicks(clickerManager.collectClicks())
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +18,11 @@ class MainActivity : AppCompatActivity() {
         addClicks(0)
         mainButton.setOnClickListener { v -> addClicks(1)}
         buyButton.setOnClickListener { v -> buyClicker() }
-        collector.start()
+        thread(start = true) {
+            while(true) {
+                addClicks(clickerManager.collectClicks())
+            }
+        }
     }
 
     fun addClicks(amount: Int)

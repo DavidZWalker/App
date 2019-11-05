@@ -1,5 +1,9 @@
 package de.hdmstuttgart.kotlinapp
 
+import kotlinx.coroutines.*
+import java.lang.Runnable
+import kotlin.concurrent.thread
+
 class ClickerManager {
 
     var clickCount = 0
@@ -16,18 +20,11 @@ class ClickerManager {
     fun buyAutoClicker() : Boolean
     {
         var autoClicker = AutoClicker()
-        val c = getAllClickers()
 
         if (clickCount >= autoClicker.price) {
-            if (c.size < maxClickerThreads) {
-                c.add(autoClicker)
-                Thread(autoClicker).start()
-                clickCount -= autoClicker.price
-            }
-            else {
-                val randomClickerNumber = (0 until maxClickerThreads).random()
-                c[randomClickerNumber].incrementClicksPerTick()
-            }
+            clickers.add(autoClicker)
+            Thread(autoClicker).start()
+            clickCount -= autoClicker.price
             return true
         }
 
@@ -36,20 +33,8 @@ class ClickerManager {
 
     @Synchronized
     fun collectClicks() : Int {
-        val c = getAllClickers()
         var collectedClicks = 0
-        c.forEach { x -> collectedClicks += x.collectClicks() }
+        clickers.forEach { x -> collectedClicks += x.collectClicks() }
         return collectedClicks
-    }
-
-    @Synchronized
-    private fun getAllClickers() : MutableList<AutoClicker>
-    {
-        return clickers;
-    }
-
-    @Synchronized
-    private fun getClicks() : Int {
-        return clickCount
     }
 }
