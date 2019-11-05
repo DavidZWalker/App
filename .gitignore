@@ -1,1 +1,3 @@
 Java.gitignore
+*.lock
+*.ser
