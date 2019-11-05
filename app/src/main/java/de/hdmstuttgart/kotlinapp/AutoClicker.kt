@@ -20,4 +20,8 @@ class AutoClicker : Runnable {
         return currentClicks
     }
 
+    fun incrementClicksPerTick() {
+        clicksPerTick++
+    }
+
 }
