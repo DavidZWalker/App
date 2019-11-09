@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProviders
 import de.hdmstuttgart.kotlinapp.BR
 import de.hdmstuttgart.kotlinapp.R
 import de.hdmstuttgart.kotlinapp.databinding.ActivityMainBinding
+import de.hdmstuttgart.kotlinapp.model.SimpleAutoClicker
 import de.hdmstuttgart.kotlinapp.viewmodel.ClickerViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -31,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun buyClicker(v : View) {
-        viewModel.addAutoClicker()
+        viewModel.addAutoClicker(SimpleAutoClicker())
     }
 
 }

@@ -3,11 +3,18 @@ package de.hdmstuttgart.kotlinapp.viewmodel
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
+import de.hdmstuttgart.kotlinapp.model.SimpleAutoClicker
 
 class ClickerViewModel : BaseObservable() {
 
     @Bindable
     var clicks = 0
+
+    private val clickers = mutableListOf<SimpleAutoClicker>()
+
+    init {
+        startCollectingClicks()
+    }
 
     fun addClick()
     {
@@ -21,12 +28,28 @@ class ClickerViewModel : BaseObservable() {
         notifyPropertyChanged(BR.clicks)
     }
 
-    fun addAutoClicker()
+    fun removeClicks(amount : Int)
+    {
+        addClicks(-amount)
+    }
+
+    fun addAutoClicker(clicker : SimpleAutoClicker)
+    {
+        if (clicks >= clicker.price)
+        {
+            removeClicks(clicker.price)
+            clickers.add(clicker)
+            Thread(clicker).start()
+        }
+    }
+
+    private fun startCollectingClicks()
     {
         Thread(Runnable {
-            while(true) {
-                Thread.sleep(1000)
-                addClicks(1)
+            while (true)
+            {
+                Thread.sleep(50)
+                clickers.forEach { x -> addClicks(x.collectClicks()) }
             }
         }).start()
     }
