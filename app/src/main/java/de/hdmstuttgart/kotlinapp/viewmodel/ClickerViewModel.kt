@@ -4,7 +4,7 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
 import de.hdmstuttgart.kotlinapp.model.AutoClickers
-import de.hdmstuttgart.kotlinapp.model.SimpleAutoClicker
+import de.hdmstuttgart.kotlinapp.model.IAutoClicker
 import de.hdmstuttgart.kotlinapp.util.AutoClickerFactory
 
 class ClickerViewModel : BaseObservable() {
@@ -12,7 +12,7 @@ class ClickerViewModel : BaseObservable() {
     @Bindable
     var clicks = 0
 
-    private val clickers = mutableListOf<SimpleAutoClicker>()
+    private val clickers = mutableListOf<IAutoClicker>()
 
     init {
         startCollectingClicks()
@@ -42,7 +42,7 @@ class ClickerViewModel : BaseObservable() {
         if (clicker != null && clicks >= clicker.price)
         {
             removeClicks(clicker.price)
-            clickers.add(clicker as SimpleAutoClicker)
+            clickers.add(clicker)
             Thread(clicker).start()
         }
     }

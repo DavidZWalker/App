@@ -1,8 +1,8 @@
 package de.hdmstuttgart.kotlinapp.model
 
-class SimpleAutoClicker : IAutoClicker {
-    override val price = 25
-    override var clicksPerSecond = 0.1
+class ImprovedAutoClicker : IAutoClicker {
+    override val price = 250
+    override var clicksPerSecond = 2.0
     private var collectedClicks = 0
 
     override fun run() {
@@ -18,5 +18,4 @@ class SimpleAutoClicker : IAutoClicker {
         collectedClicks = 0
         return clicksToReturn
     }
-
 }
