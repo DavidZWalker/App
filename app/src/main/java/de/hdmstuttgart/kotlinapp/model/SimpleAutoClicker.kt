@@ -2,7 +2,6 @@ package de.hdmstuttgart.kotlinapp.model
 
 class SimpleAutoClicker : IAutoClicker {
     override val price = 25
-
     override var clicksPerSecond = 0.1
     private var collectedClicks = 0
 
