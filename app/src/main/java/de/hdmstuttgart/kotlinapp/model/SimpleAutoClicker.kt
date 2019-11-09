@@ -1,10 +1,10 @@
 package de.hdmstuttgart.kotlinapp.model
 
-class SimpleAutoClicker : Runnable {
-    val price = 25
-    private val clicksPerSecond = 1
+class SimpleAutoClicker : IAutoClicker {
+    override val price = 25
 
-    var collectedClicks = 0
+    override var clicksPerSecond = 0.1
+    private var collectedClicks = 0
 
     override fun run() {
         while (true)
@@ -14,7 +14,7 @@ class SimpleAutoClicker : Runnable {
         }
     }
 
-    fun collectClicks() : Int {
+    override fun collectClicks() : Int {
         val clicksToReturn = collectedClicks
         collectedClicks = 0
         return clicksToReturn
