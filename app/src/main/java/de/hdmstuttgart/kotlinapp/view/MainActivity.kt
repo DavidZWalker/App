@@ -25,8 +25,12 @@ class MainActivity : AppCompatActivity() {
         viewModel.addClick()
     }
 
-    fun buyClicker(v : View) {
+    fun buySimple(v : View) {
         viewModel.addAutoClicker(AutoClickers.Simple)
+    }
+
+    fun buyImproved(v : View) {
+        viewModel.addAutoClicker(AutoClickers.Improved)
     }
 
 }

@@ -46,13 +46,22 @@
             android:layout_gravity="center">
 
             <Button
-                android:id="@+id/buyButton"
+                android:id="@+id/buySimple"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
                 android:textSize="20sp"
                 android:text="@string/addSimple"
-                android:onClick="buyClicker"/>
+                android:onClick="buySimple"/>
+
+            <Button
+                android:id="@+id/buyImproved"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:text="@string/addImproved"
+                android:onClick="buyImproved"/>
         </LinearLayout>
 
     </LinearLayout>
