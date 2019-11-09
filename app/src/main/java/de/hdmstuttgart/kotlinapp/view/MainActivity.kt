@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun buyClicker(v : View) {
-        
+        viewModel.addAutoClicker()
     }
 
 }
