@@ -3,7 +3,9 @@ package de.hdmstuttgart.kotlinapp.viewmodel
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
+import de.hdmstuttgart.kotlinapp.model.AutoClickers
 import de.hdmstuttgart.kotlinapp.model.SimpleAutoClicker
+import de.hdmstuttgart.kotlinapp.util.AutoClickerFactory
 
 class ClickerViewModel : BaseObservable() {
 
@@ -33,12 +35,14 @@ class ClickerViewModel : BaseObservable() {
         addClicks(-amount)
     }
 
-    fun addAutoClicker(clicker : SimpleAutoClicker)
+    fun addAutoClicker(clickerType : AutoClickers)
     {
-        if (clicks >= clicker.price)
+        val clicker = AutoClickerFactory.getAutoClicker(clickerType)
+
+        if (clicker != null && clicks >= clicker.price)
         {
             removeClicks(clicker.price)
-            clickers.add(clicker)
+            clickers.add(clicker as SimpleAutoClicker)
             Thread(clicker).start()
         }
     }
