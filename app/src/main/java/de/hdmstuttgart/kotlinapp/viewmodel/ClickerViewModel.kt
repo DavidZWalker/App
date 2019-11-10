@@ -18,7 +18,7 @@ class ClickerViewModel : BaseObservable() {
             notifyPropertyChanged(BR.clicks)
         }
 
-    var clicksPerSec = 0.0
+    private var clicksPerSec = 0.0
         set(value) {
             val df = DecimalFormat("#.#")
             df.roundingMode = RoundingMode.CEILING
@@ -61,12 +61,18 @@ class ClickerViewModel : BaseObservable() {
     {
         val clicker = AutoClickerFactory.getAutoClicker(clickerType)
 
-        if (clicker != null && clicks >= clicker.price)
-        {
+        if (clicker != null && clicks >= clicker.price) {
             removeClicks(clicker.price)
-            clickers.add(clicker)
-            Thread(clicker).start()
-            clicksPerSec += clicker.clicksPerSecond
+
+            // limit the amount of threads that are created to the number of distinct clicker types
+            val c = clickers.find { x -> x.name == clicker.name }
+            if (c == null) {
+                clickers.add(clicker)
+                Thread(clicker).start()
+            }
+            else c.addClicker()
+
+            clicksPerSec += clicker.currentClicksPerSec
         }
     }
 
