@@ -52,7 +52,7 @@ class ClickerViewModel : BaseObservable() {
 
     fun addClick()
     {
-        clicks += 100000
+        clicks += 1
     }
 
     fun addClicks(amount : Int)
