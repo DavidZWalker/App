@@ -18,19 +18,28 @@ class ClickerViewModel : BaseObservable() {
             notifyPropertyChanged(BR.clicks)
         }
 
-    @Bindable
     var clicksPerSec = 0.0
         set(value) {
             val df = DecimalFormat("#.#")
             df.roundingMode = RoundingMode.CEILING
             field = df.format(value).toDouble()
-            notifyPropertyChanged(BR.clicksPerSec)
+            clicksPerSecString = field.toString()
+        }
+
+    @Bindable
+    var clicksPerSecString = ""
+        set(value) {
+            val prefix = "+"
+            val suffix = "/sec"
+            field = prefix + value + suffix
+            notifyPropertyChanged(BR.clicksPerSecString)
         }
 
     private val clickers = mutableListOf<IAutoClicker>()
 
     init {
         startCollectingClicks()
+        clicksPerSec = 0.0
     }
 
     fun addClick()
