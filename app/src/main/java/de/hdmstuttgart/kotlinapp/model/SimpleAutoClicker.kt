@@ -7,12 +7,13 @@ class SimpleAutoClicker : IAutoClicker {
     override val baseClicksPerSec = 0.1
     override var currentClicksPerSec = 0.1
     private var collectedClicks = 0
+    private val clicksPerTick = 1
 
     override fun run() {
         while (true)
         {
             Thread.sleep((1000 / currentClicksPerSec).toLong())
-            collectedClicks++
+            collectedClicks += clicksPerTick
         }
     }
 
@@ -25,6 +26,7 @@ class SimpleAutoClicker : IAutoClicker {
     override fun addClicker() {
         Thread.currentThread().interrupt()
         currentClicksPerSec += baseClicksPerSec
+
     }
 
 }
