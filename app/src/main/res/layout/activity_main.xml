@@ -18,17 +18,26 @@
         android:id="@+id/tvClicks"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:gravity="center"
+        android:layout_marginTop="200dp"
         android:textSize="90sp"
         android:textStyle="bold"
         android:text="@{ String.valueOf(viewModel.clicks) }"/>
+
+    <TextView
+        android:id="@+id/tvClicksPerSec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@{viewModel.clicksPerSecString}"
+        android:layout_below="@id/tvClicks"
+        android:textSize="16sp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_below="@id/tvClicks">
+        android:layout_below="@id/tvClicksPerSec">
 
         <Button
             android:id="@+id/mainButton"
