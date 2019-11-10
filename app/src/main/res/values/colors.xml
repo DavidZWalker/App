@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="mainBackgroundColor">#FF3B3B</color>
-    <color name="mainForegroundColor">#FFFFFF</color>
+    <color name="primaryColor">#FF3B3B</color>
+    <color name="secondaryColor">#CC2F2F</color>
+    <color name="mainForegroundColor">#FFF</color>
+    <color name="black">#000</color>
 </resources>

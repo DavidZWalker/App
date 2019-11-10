@@ -13,7 +13,7 @@
     android:layout_height="match_parent"
     tools:context=".view.MainActivity"
     android:orientation="vertical"
-    android:background="@color/mainBackgroundColor">
+    android:background="@color/primaryColor">
 
     <TextView
         android:id="@+id/tvClicks"
@@ -53,7 +53,9 @@
                 android:onClick="buyAutoClicker"
                 android:layout_gravity="fill"
                 android:layout_columnWeight="1"
-                android:padding="25dp"/>
+                android:padding="25dp"
+                android:background="@drawable/button_background"
+                android:textColor="@color/mainForegroundColor"/>
 
             <Button
                 android:id="@+id/buyImproved"
@@ -62,7 +64,9 @@
                 android:onClick="buyAutoClicker"
                 android:layout_gravity="fill"
                 android:layout_columnWeight="1"
-                android:padding="25dp"/>
+                android:padding="25dp"
+                android:background="@drawable/button_background"
+                android:textColor="@color/mainForegroundColor"/>
         </GridLayout>
 
 </RelativeLayout>
