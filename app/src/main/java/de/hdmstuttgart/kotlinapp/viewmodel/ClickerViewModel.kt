@@ -6,23 +6,21 @@ import androidx.databinding.library.baseAdapters.BR
 import de.hdmstuttgart.kotlinapp.model.AutoClickers
 import de.hdmstuttgart.kotlinapp.model.IAutoClicker
 import de.hdmstuttgart.kotlinapp.util.AutoClickerFactory
-import de.hdmstuttgart.kotlinapp.util.ClicksToStringConverter
-import java.math.RoundingMode
-import java.text.DecimalFormat
+import de.hdmstuttgart.kotlinapp.util.BigIntegerToShortStringConverter
+import java.math.BigDecimal
+import java.math.BigInteger
 
 class ClickerViewModel : BaseObservable() {
 
-    var clicks = 0L
+    var clicks : BigDecimal = 0.toBigDecimal()
         set(value) {
             field = value
-            clicksString = ClicksToStringConverter.getStringForClicks(field)
+            clicksString = BigIntegerToShortStringConverter.getStringForClicks(field)
         }
 
-    private var clicksPerSec = 0.0
+    private var clicksPerSec = 0.0.toBigDecimal()
         set(value) {
-            val df = DecimalFormat("#.#")
-            df.roundingMode = RoundingMode.CEILING
-            field = df.format(value).toDouble()
+            field = String.format("%.2f", value).toBigDecimal()
             clicksPerSecString = field.toString()
         }
 
@@ -46,21 +44,21 @@ class ClickerViewModel : BaseObservable() {
 
     init {
         startCollectingClicks()
-        clicksPerSec = 0.0
-        clicks = 0
+        clicksPerSec = 0.0.toBigDecimal()
+        clicks = 0.toBigDecimal()
     }
 
     fun addClick()
     {
-        clicks += 1
+        clicks++
     }
 
-    fun addClicks(amount : Int)
+    fun addClicks(amount : BigDecimal)
     {
         clicks += amount
     }
 
-    fun removeClicks(amount : Int)
+    fun removeClicks(amount : BigDecimal)
     {
         addClicks(-amount)
     }

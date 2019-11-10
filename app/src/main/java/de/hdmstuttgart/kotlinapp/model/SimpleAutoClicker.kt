@@ -1,25 +1,27 @@
 package de.hdmstuttgart.kotlinapp.model
 
+import java.math.BigDecimal
+
 class SimpleAutoClicker : IAutoClicker {
 
-    override val price = 25
+    override val price = 25.toBigDecimal()
     override val name = "Simple"
-    override val baseClicksPerSec = 0.1
-    override var currentClicksPerSec = 0.1
-    private var collectedClicks = 0
-    private val clicksPerTick = 1
+    override val baseClicksPerSec = 0.1.toBigDecimal()
+    override var currentClicksPerSec = 0.1.toBigDecimal()
+    private var collectedClicks = 0.toBigDecimal()
+    private val clicksPerTick = 1.toBigDecimal()
 
     override fun run() {
         while (true)
         {
-            Thread.sleep((1000 / currentClicksPerSec).toLong())
+            Thread.sleep((1000.toBigDecimal() / currentClicksPerSec).toLong())
             collectedClicks += clicksPerTick
         }
     }
 
-    override fun collectClicks() : Int {
+    override fun collectClicks() : BigDecimal {
         val clicksToReturn = collectedClicks
-        collectedClicks = 0
+        collectedClicks = 0.toBigDecimal()
         return clicksToReturn
     }
 
@@ -28,5 +30,4 @@ class SimpleAutoClicker : IAutoClicker {
         currentClicksPerSec += baseClicksPerSec
 
     }
-
 }
