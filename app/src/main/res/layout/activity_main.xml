@@ -50,7 +50,7 @@
                 android:id="@+id/buySimple"
                 android:textSize="20sp"
                 android:text="@string/addSimple"
-                android:onClick="buySimple"
+                android:onClick="buyAutoClicker"
                 android:layout_gravity="fill"
                 android:layout_columnWeight="1"
                 android:padding="25dp"/>
@@ -59,7 +59,7 @@
                 android:id="@+id/buyImproved"
                 android:textSize="20sp"
                 android:text="@string/addImproved"
-                android:onClick="buyImproved"
+                android:onClick="buyAutoClicker"
                 android:layout_gravity="fill"
                 android:layout_columnWeight="1"
                 android:padding="25dp"/>
