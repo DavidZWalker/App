@@ -6,16 +6,16 @@ import androidx.databinding.library.baseAdapters.BR
 import de.hdmstuttgart.kotlinapp.model.AutoClickers
 import de.hdmstuttgart.kotlinapp.model.IAutoClicker
 import de.hdmstuttgart.kotlinapp.util.AutoClickerFactory
+import de.hdmstuttgart.kotlinapp.util.ClicksToStringConverter
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
 class ClickerViewModel : BaseObservable() {
 
-    @Bindable
-    var clicks = 0
+    var clicks = 0L
         set(value) {
             field = value
-            notifyPropertyChanged(BR.clicks)
+            clicksString = ClicksToStringConverter.getStringForClicks(field)
         }
 
     private var clicksPerSec = 0.0
@@ -24,6 +24,13 @@ class ClickerViewModel : BaseObservable() {
             df.roundingMode = RoundingMode.CEILING
             field = df.format(value).toDouble()
             clicksPerSecString = field.toString()
+        }
+
+    @Bindable
+    var clicksString = ""
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.clicksString)
         }
 
     @Bindable
@@ -40,11 +47,12 @@ class ClickerViewModel : BaseObservable() {
     init {
         startCollectingClicks()
         clicksPerSec = 0.0
+        clicks = 0
     }
 
     fun addClick()
     {
-        clicks++
+        clicks += 100000
     }
 
     fun addClicks(amount : Int)

@@ -23,7 +23,7 @@
         android:layout_marginTop="200dp"
         android:textSize="90sp"
         android:textStyle="bold"
-        android:text="@{ String.valueOf(viewModel.clicks) }"
+        android:text="@{viewModel.clicksString}"
         android:textColor="@color/mainForegroundColor"
         android:clickable="true"
         android:onClick="addClick"/>
