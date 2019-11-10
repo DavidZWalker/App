@@ -2,8 +2,6 @@ Java.gitignore
 *.lock
 *.ser
 *.bin
-*.lock
-*.lock
 .gradle/buildOutputCleanup/buildOutputCleanup.lock
 .gradle/5.4.1/javaCompile/taskHistory.bin
 .gradle/5.4.1/javaCompile/jarAnalysis.bin
@@ -25,7 +23,6 @@ Java.gitignore
 .gradle/5.4.1/executionHistory/executionHistory.bin
 *.bin
 *.lock
-*.xml
 .gradle/5.4.1/executionHistory/executionHistory.bin
 .gradle/5.4.1/executionHistory/executionHistory.lock
 .gradle/5.4.1/fileHashes/fileHashes.bin
@@ -37,3 +34,5 @@ Java.gitignore
 .gradle/5.4.1/javaCompile/taskHistory.bin
 .gradle/buildOutputCleanup/buildOutputCleanup.lock
 .idea/workspace.xml
+./.gradle/
+./.idea/
