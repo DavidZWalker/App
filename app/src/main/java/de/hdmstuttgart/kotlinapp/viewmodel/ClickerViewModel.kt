@@ -3,14 +3,16 @@ package de.hdmstuttgart.kotlinapp.viewmodel
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
+import de.hdmstuttgart.kotlinapp.model.AutoClickerTask
 import de.hdmstuttgart.kotlinapp.model.AutoClickers
-import de.hdmstuttgart.kotlinapp.model.IAutoClicker
-import de.hdmstuttgart.kotlinapp.util.AutoClickerFactory
+import de.hdmstuttgart.kotlinapp.model.IAutoClickerTask
 import de.hdmstuttgart.kotlinapp.util.BigIntegerToShortStringConverter
+import de.hdmstuttgart.kotlinapp.util.Constants
 import java.math.BigDecimal
-import java.math.BigInteger
 
 class ClickerViewModel : BaseObservable() {
+
+    private var clickerTask = AutoClickerTask()
 
     var clicks : BigDecimal = 0.toBigDecimal()
         set(value) {
@@ -40,17 +42,16 @@ class ClickerViewModel : BaseObservable() {
             notifyPropertyChanged(BR.clicksPerSecString)
         }
 
-    private val clickers = mutableListOf<IAutoClicker>()
-
     init {
         startCollectingClicks()
-        clicksPerSec = 0.0.toBigDecimal()
-        clicks = 0.toBigDecimal()
+        Thread(clickerTask).start()
+        clicksPerSec = BigDecimal(0.0)
+        clicks = BigDecimal(0)
     }
 
     fun addClick()
     {
-        clicks++
+        clicks += BigDecimal(100_000)
     }
 
     fun addClicks(amount : BigDecimal)
@@ -65,20 +66,11 @@ class ClickerViewModel : BaseObservable() {
 
     fun addAutoClicker(clickerType : AutoClickers)
     {
-        val clicker = AutoClickerFactory.getAutoClicker(clickerType)
-
-        if (clicker != null && clicks >= clicker.price) {
-            removeClicks(clicker.price)
-
-            // limit the amount of threads that are created to the number of distinct clicker types
-            val c = clickers.find { x -> x.name == clicker.name }
-            if (c == null) {
-                clickers.add(clicker)
-                Thread(clicker).start()
-            }
-            else c.addClicker()
-
-            clicksPerSec += clicker.currentClicksPerSec
+        val clickerPrice = clickerTask.getPriceForClickerType(clickerType)
+        if (clicks >= clickerPrice) {
+            clickerTask.addClicker(clickerType)
+            clicks -= clickerPrice
+            clicksPerSec += clickerTask.getClicksPerSecForClickerType(clickerType)
         }
     }
 
@@ -87,8 +79,8 @@ class ClickerViewModel : BaseObservable() {
         Thread(Runnable {
             while (true)
             {
-                Thread.sleep(50)
-                clickers.forEach { x -> addClicks(x.collectClicks()) }
+                Thread.sleep((1000 / Constants.FRAMES_PER_SECOND).toLong())
+                addClicks(clickerTask.collectClicks())
             }
         }).start()
     }

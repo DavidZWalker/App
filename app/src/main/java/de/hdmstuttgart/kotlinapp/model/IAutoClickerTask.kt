@@ -2,12 +2,10 @@ package de.hdmstuttgart.kotlinapp.model
 
 import java.math.BigDecimal
 
-interface IAutoClicker : Runnable {
+interface IAutoClickerTask : Runnable {
 
-    val price : BigDecimal
-    val name : String
     val baseClicksPerSec : BigDecimal
     var currentClicksPerSec : BigDecimal
     fun collectClicks() : BigDecimal
-    fun addClicker()
+    fun addClicker(type : AutoClickers)
 }
