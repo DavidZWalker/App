@@ -20,10 +20,10 @@ class ClickerViewModel : BaseObservable() {
             clicksString = BigDecimalToShortStringConverter.getShortStringFor(field)
         }
 
-    private var clicksPerSec = BigDecimal(0)
+    var clicksPerSec = BigDecimal(0)
         set(value) {
             field = value
-            clicksPerSecString = BigDecimalToShortStringConverter.getShortStringFor(field)
+            clicksPerSecString = BigDecimalToShortStringConverter.getShortStringFor(field, true)
         }
 
     @Bindable
@@ -84,7 +84,7 @@ class ClickerViewModel : BaseObservable() {
 
     fun addClick()
     {
-        clicks += BigDecimal(100_000)
+        clicks += BigDecimal(1)
     }
 
     fun addClicks(amount : BigDecimal)
@@ -116,6 +116,13 @@ class ClickerViewModel : BaseObservable() {
                 addClicks(clickerTask.collectClicks())
             }
         }).start()
+    }
+
+    fun loadFromData(clicks : BigDecimal, clicksPerSec : BigDecimal) {
+        this.clicks = clicks
+
+        this.clicksPerSec = clicksPerSec
+        clickerTask.currentClicksPerSec = clicksPerSec
     }
 
 }
