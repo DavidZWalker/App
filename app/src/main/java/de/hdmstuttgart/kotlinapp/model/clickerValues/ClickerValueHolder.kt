@@ -42,38 +42,28 @@ class ClickerValueHolder {
     }
 
     private class MythicClickerValues : IClickerValues {
-        override val price: BigDecimal
-            get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-        override val clicksPerSec: BigDecimal
-            get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+        override val price = BigDecimal(1_000_000)
+        override val clicksPerSec = BigDecimal(50_000)
     }
 
     private class ExoticClickerValues : IClickerValues {
-        override val price: BigDecimal
-            get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-        override val clicksPerSec: BigDecimal
-            get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+        override val price = BigDecimal(100_000)
+        override val clicksPerSec = BigDecimal(3000)
     }
 
     private class LegendaryClickerValues : IClickerValues {
-        override val price: BigDecimal
-            get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-        override val clicksPerSec: BigDecimal
-            get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+        override val price = BigDecimal(40_000)
+        override val clicksPerSec = BigDecimal(1000)
     }
 
     private class EliteClickerValues : IClickerValues {
-        override val price: BigDecimal
-            get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-        override val clicksPerSec: BigDecimal
-            get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+        override val price = BigDecimal(10_000)
+        override val clicksPerSec = BigDecimal(200)
     }
 
     private class ProClickerValues : IClickerValues {
-        override val price: BigDecimal
-            get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-        override val clicksPerSec: BigDecimal
-            get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+        override val price = BigDecimal(3000)
+        override val clicksPerSec = BigDecimal(50)
     }
 
     private class AdvancedClickerValues : IClickerValues{

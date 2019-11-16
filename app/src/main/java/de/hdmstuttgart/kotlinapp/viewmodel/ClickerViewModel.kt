@@ -5,8 +5,7 @@ import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
 import de.hdmstuttgart.kotlinapp.model.AutoClickerTask
 import de.hdmstuttgart.kotlinapp.model.AutoClickers
-import de.hdmstuttgart.kotlinapp.model.IAutoClickerTask
-import de.hdmstuttgart.kotlinapp.util.BigIntegerToShortStringConverter
+import de.hdmstuttgart.kotlinapp.util.BigDecimalToShortStringConverter
 import de.hdmstuttgart.kotlinapp.util.Constants
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -15,16 +14,16 @@ class ClickerViewModel : BaseObservable() {
 
     private var clickerTask = AutoClickerTask()
 
-    var clicks : BigDecimal = 0.toBigDecimal()
+    var clicks : BigDecimal = BigDecimal(0)
         set(value) {
             field = value
-            clicksString = BigIntegerToShortStringConverter.getStringForClicks(field)
+            clicksString = BigDecimalToShortStringConverter.getShortStringFor(field)
         }
 
-    private var clicksPerSec = 0.0.toBigDecimal()
+    private var clicksPerSec = BigDecimal(0)
         set(value) {
-            field = String.format("%.2f", value).toBigDecimal()
-            clicksPerSecString = field.toString()
+            field = value
+            clicksPerSecString = BigDecimalToShortStringConverter.getShortStringFor(field)
         }
 
     @Bindable
@@ -43,29 +42,38 @@ class ClickerViewModel : BaseObservable() {
             notifyPropertyChanged(BR.clicksPerSecString)
         }
 
-    @Bindable
-    val simpleButtonString = "+ " +
-            clickerTask.getClicksPerSecForClickerType(AutoClickers.Simple).setScale(2, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString() +
-            "/sec \n" +
-            "(" +
-            clickerTask.getPriceForClickerType(AutoClickers.Simple).setScale(2, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString() +
-            ")"
+    private fun getButtonStringForClickerType(type : AutoClickers) : String {
+        return "+ " +
+                BigDecimalToShortStringConverter.getShortStringFor(clickerTask.getClicksPerSecForClickerType(type).setScale(2, RoundingMode.HALF_UP)) +
+                "/sec \n" +
+                "($" +
+                BigDecimalToShortStringConverter.getShortStringFor(clickerTask.getPriceForClickerType(type).setScale(2, RoundingMode.HALF_UP), true) +
+                ")"
+    }
 
     @Bindable
-    val improvedButtonString = "+ " +
-            clickerTask.getClicksPerSecForClickerType(AutoClickers.Improved).setScale(2, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString() +
-            "/sec \n" +
-            "(" +
-            clickerTask.getPriceForClickerType(AutoClickers.Improved).setScale(2, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString() +
-            ")"
+    val simpleButtonString = getButtonStringForClickerType(AutoClickers.Simple)
 
     @Bindable
-    val advancedButtonString = "+ " +
-            clickerTask.getClicksPerSecForClickerType(AutoClickers.Advanced).setScale(2, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString() +
-            "/sec \n" +
-            "(" +
-            clickerTask.getPriceForClickerType(AutoClickers.Advanced).setScale(2, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString() +
-            ")"
+    val improvedButtonString = getButtonStringForClickerType(AutoClickers.Improved)
+
+    @Bindable
+    val advancedButtonString = getButtonStringForClickerType(AutoClickers.Advanced)
+
+    @Bindable
+    val proButtonString = getButtonStringForClickerType(AutoClickers.Pro)
+
+    @Bindable
+    val eliteButtonString = getButtonStringForClickerType(AutoClickers.Elite)
+
+    @Bindable
+    val legendaryButtonString = getButtonStringForClickerType(AutoClickers.Legendary)
+
+    @Bindable
+    val exoticButtonString = getButtonStringForClickerType(AutoClickers.Exotic)
+
+    @Bindable
+    val mythicButtonString = getButtonStringForClickerType(AutoClickers.Mythic)
 
     init {
         startCollectingClicks()

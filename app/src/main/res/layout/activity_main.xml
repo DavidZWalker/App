@@ -66,6 +66,41 @@
                 android:layout_height="wrap_content"
                 android:layout_width="200dp"
                 android:text="@{viewModel.advancedButtonString}"/>
+
+            <Button
+                android:id="@+id/buyPro"
+                style="@style/ClickerButtonBaseStyle"
+                android:layout_height="wrap_content"
+                android:layout_width="200dp"
+                android:text="@{viewModel.proButtonString}"/>
+
+            <Button
+                android:id="@+id/buyElite"
+                style="@style/ClickerButtonBaseStyle"
+                android:layout_height="wrap_content"
+                android:layout_width="200dp"
+                android:text="@{viewModel.eliteButtonString}"/>
+
+            <Button
+                android:id="@+id/buyLegendary"
+                style="@style/ClickerButtonBaseStyle"
+                android:layout_height="wrap_content"
+                android:layout_width="200dp"
+                android:text="@{viewModel.legendaryButtonString}"/>
+
+            <Button
+                android:id="@+id/buyExotic"
+                style="@style/ClickerButtonBaseStyle"
+                android:layout_height="wrap_content"
+                android:layout_width="200dp"
+                android:text="@{viewModel.exoticButtonString}"/>
+
+            <Button
+                android:id="@+id/buyMythic"
+                style="@style/ClickerButtonBaseStyle"
+                android:layout_height="wrap_content"
+                android:layout_width="200dp"
+                android:text="@{viewModel.mythicButtonString}"/>
         </LinearLayout>
     </HorizontalScrollView>
 

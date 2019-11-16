@@ -33,6 +33,11 @@ class MainActivity : AppCompatActivity() {
             R.id.buySimple -> viewModel.addAutoClicker(AutoClickers.Simple)
             R.id.buyImproved -> viewModel.addAutoClicker(AutoClickers.Improved)
             R.id.buyAdvanced -> viewModel.addAutoClicker(AutoClickers.Advanced)
+            R.id.buyPro -> viewModel.addAutoClicker(AutoClickers.Pro)
+            R.id.buyElite -> viewModel.addAutoClicker(AutoClickers.Elite)
+            R.id.buyLegendary -> viewModel.addAutoClicker(AutoClickers.Legendary)
+            R.id.buyExotic -> viewModel.addAutoClicker(AutoClickers.Exotic)
+            R.id.buyMythic -> viewModel.addAutoClicker(AutoClickers.Mythic)
         }
     }
 
