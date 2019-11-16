@@ -15,6 +15,13 @@
     android:orientation="vertical"
     android:background="@color/primaryColor">
 
+    <ImageView
+        android:id="@+id/rank"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rank_background" />
+
     <TextView
         android:id="@+id/tvClicks"
         android:layout_width="match_parent"

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:viewportWidth="10.0"
+    android:viewportHeight="50.0"
+    android:width="175dp"
+    android:height="250dp">
+    <group android:name="background">
+        <path android:name="flag" android:fillColor="@color/mainForegroundColor"
+            android:pathData="M0,0 l0,35 l5,15 l5,-15 l0,-35 z"
+            android:strokeWidth="3"/>
+    </group>
+</vector>
