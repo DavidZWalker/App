@@ -59,6 +59,14 @@ class ClickerViewModel : BaseObservable() {
             clickerTask.getPriceForClickerType(AutoClickers.Improved).setScale(2, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString() +
             ")"
 
+    @Bindable
+    val advancedButtonString = "+ " +
+            clickerTask.getClicksPerSecForClickerType(AutoClickers.Advanced).setScale(2, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString() +
+            "/sec \n" +
+            "(" +
+            clickerTask.getPriceForClickerType(AutoClickers.Advanced).setScale(2, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString() +
+            ")"
+
     init {
         startCollectingClicks()
         Thread(clickerTask).start()

@@ -2,5 +2,11 @@ package de.hdmstuttgart.kotlinapp.model
 
 enum class AutoClickers {
     Simple,
-    Improved
+    Improved,
+    Advanced,
+    Pro,
+    Elite,
+    Legendary,
+    Exotic,
+    Mythic
 }

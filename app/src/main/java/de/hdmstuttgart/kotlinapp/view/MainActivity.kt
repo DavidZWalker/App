@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         {
             R.id.buySimple -> viewModel.addAutoClicker(AutoClickers.Simple)
             R.id.buyImproved -> viewModel.addAutoClicker(AutoClickers.Improved)
+            R.id.buyAdvanced -> viewModel.addAutoClicker(AutoClickers.Advanced)
         }
     }
 

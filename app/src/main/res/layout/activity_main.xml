@@ -38,36 +38,36 @@
         android:textSize="16sp"
         android:textColor="@color/mainForegroundColor"/>
 
-        <GridLayout
-            android:layout_alignParentBottom="true"
-            android:rowCount="1"
-            android:columnCount="2"
+    <HorizontalScrollView
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_height="wrap_content">
 
             <Button
                 android:id="@+id/buySimple"
-                android:textSize="20sp"
-                android:text="@{viewModel.simpleButtonString}"
-                android:onClick="buyAutoClicker"
-                android:layout_gravity="fill"
-                android:layout_columnWeight="1"
-                android:padding="25dp"
-                android:background="@drawable/button_background"
-                android:textColor="@color/mainForegroundColor"/>
+                style="@style/ClickerButtonBaseStyle"
+                android:layout_height="wrap_content"
+                android:layout_width="200dp"
+                android:text="@{viewModel.simpleButtonString}"/>
 
             <Button
                 android:id="@+id/buyImproved"
-                android:textSize="20sp"
-                android:text="@{viewModel.improvedButtonString}"
-                android:onClick="buyAutoClicker"
-                android:layout_gravity="fill"
-                android:layout_columnWeight="1"
-                android:padding="25dp"
-                android:background="@drawable/button_background"
-                android:textColor="@color/mainForegroundColor"/>
-        </GridLayout>
+                style="@style/ClickerButtonBaseStyle"
+                android:layout_height="wrap_content"
+                android:layout_width="200dp"
+                android:text="@{viewModel.improvedButtonString}" />
+
+            <Button
+                android:id="@+id/buyAdvanced"
+                style="@style/ClickerButtonBaseStyle"
+                android:layout_height="wrap_content"
+                android:layout_width="200dp"
+                android:text="@{viewModel.advancedButtonString}"/>
+        </LinearLayout>
+    </HorizontalScrollView>
 
 </RelativeLayout>
 

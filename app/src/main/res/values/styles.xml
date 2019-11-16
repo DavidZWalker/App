@@ -13,4 +13,12 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <style name="ClickerButtonBaseStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:padding">20dp</item>
+        <item name="android:background">@drawable/button_background</item>
+        <item name="android:textColor">@color/mainForegroundColor</item>
+        <item name="android:onClick">buyAutoClicker</item>
+    </style>
+
 </resources>

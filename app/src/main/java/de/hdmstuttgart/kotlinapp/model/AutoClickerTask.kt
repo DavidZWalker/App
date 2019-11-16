@@ -1,6 +1,6 @@
 package de.hdmstuttgart.kotlinapp.model
 
-import de.hdmstuttgart.kotlinapp.model.clickerValues.ClickerValues
+import de.hdmstuttgart.kotlinapp.model.clickerValues.ClickerValueHolder
 import de.hdmstuttgart.kotlinapp.util.Constants
 import java.math.BigDecimal
 import java.math.MathContext
@@ -32,10 +32,10 @@ class AutoClickerTask : IAutoClickerTask {
     }
 
     fun getPriceForClickerType(type: AutoClickers) : BigDecimal {
-        return ClickerValues.priceOf(type)
+        return ClickerValueHolder.priceOf(type)
     }
 
     fun getClicksPerSecForClickerType(type : AutoClickers) : BigDecimal {
-        return ClickerValues.clicksPerSecOf(type)
+        return ClickerValueHolder.clicksPerSecOf(type)
     }
 }
