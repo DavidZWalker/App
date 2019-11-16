@@ -49,7 +49,7 @@
             <Button
                 android:id="@+id/buySimple"
                 android:textSize="20sp"
-                android:text="@string/addSimple"
+                android:text="@{viewModel.simpleButtonString}"
                 android:onClick="buyAutoClicker"
                 android:layout_gravity="fill"
                 android:layout_columnWeight="1"
@@ -60,7 +60,7 @@
             <Button
                 android:id="@+id/buyImproved"
                 android:textSize="20sp"
-                android:text="@string/addImproved"
+                android:text="@{viewModel.improvedButtonString}"
                 android:onClick="buyAutoClicker"
                 android:layout_gravity="fill"
                 android:layout_columnWeight="1"

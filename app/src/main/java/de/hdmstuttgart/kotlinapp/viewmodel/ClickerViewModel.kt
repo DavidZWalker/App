@@ -9,6 +9,7 @@ import de.hdmstuttgart.kotlinapp.model.IAutoClickerTask
 import de.hdmstuttgart.kotlinapp.util.BigIntegerToShortStringConverter
 import de.hdmstuttgart.kotlinapp.util.Constants
 import java.math.BigDecimal
+import java.math.RoundingMode
 
 class ClickerViewModel : BaseObservable() {
 
@@ -41,6 +42,22 @@ class ClickerViewModel : BaseObservable() {
             field = prefix + value + suffix
             notifyPropertyChanged(BR.clicksPerSecString)
         }
+
+    @Bindable
+    val simpleButtonString = "+ " +
+            clickerTask.getClicksPerSecForClickerType(AutoClickers.Simple).setScale(2, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString() +
+            "/sec \n" +
+            "(" +
+            clickerTask.getPriceForClickerType(AutoClickers.Simple).setScale(2, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString() +
+            ")"
+
+    @Bindable
+    val improvedButtonString = "+ " +
+            clickerTask.getClicksPerSecForClickerType(AutoClickers.Improved).setScale(2, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString() +
+            "/sec \n" +
+            "(" +
+            clickerTask.getPriceForClickerType(AutoClickers.Improved).setScale(2, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString() +
+            ")"
 
     init {
         startCollectingClicks()

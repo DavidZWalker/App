@@ -1,6 +1,3 @@
 <resources>
     <string name="app_name">Clicker</string>
-    <string name="ClickMe">+ 1</string>
-    <string name="addSimple">+ 0.1/sec</string>
-    <string name="addImproved">+ 2.0/sec</string>
 </resources>
