@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="viewModel"
+            type="de.hdmstuttgart.kotlinapp.viewmodel.RankViewModel" />
+    </data>
+        <RelativeLayout android:id="@+id/badge"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:context=".view.RankBadgeFragment"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <ImageView
+                android:id="@+id/rank"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rank_background"
+                android:clickable="false"
+                android:focusable="false"/>
+
+            <LinearLayout
+                android:id="@+id/rankForegroundLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="25dp"
+                android:clickable="false"
+                android:focusable="false">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RANK"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="36sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:clickable="false"
+                    android:focusable="false"/>
+
+                <ImageView
+                    android:id="@+id/rank1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_rank_1"
+                    android:clickable="false"
+                    android:focusable="false"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.rank}"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="45sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="-15dp"
+                    android:clickable="false"
+                    android:focusable="false"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+</layout>

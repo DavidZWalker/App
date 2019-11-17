@@ -14,7 +14,7 @@ import java.math.BigDecimal
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel : ClickerViewModel
-    lateinit var mBinding : ActivityMainBinding
+    private lateinit var mBinding : ActivityMainBinding
     private val clicksFileName = "clicks"
     private val clicksPerSecFilename = "clicksPerSec"
 
