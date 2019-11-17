@@ -29,6 +29,7 @@
             android:layout_alignParentBottom="true"
             android:textSize="28sp"
             android:text="RANK UP!"
-            android:gravity="center" />
+            android:gravity="center"
+            style="@style/ClickerButtonBaseStyle"/>
     </RelativeLayout>
 </layout>
