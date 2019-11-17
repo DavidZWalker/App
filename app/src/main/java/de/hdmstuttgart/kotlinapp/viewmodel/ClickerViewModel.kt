@@ -6,6 +6,7 @@ import androidx.databinding.library.baseAdapters.BR
 import de.hdmstuttgart.kotlinapp.model.AutoClickerTask
 import de.hdmstuttgart.kotlinapp.model.AutoClickers
 import de.hdmstuttgart.kotlinapp.util.BigDecimalToShortStringConverter
+import de.hdmstuttgart.kotlinapp.util.ClickerAPI
 import de.hdmstuttgart.kotlinapp.util.Constants
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -13,16 +14,19 @@ import java.math.RoundingMode
 class ClickerViewModel : BaseObservable() {
 
     private var clickerTask = AutoClickerTask()
+    private val clickerApi = ClickerAPI.getInstance()
 
     var clicks : BigDecimal = BigDecimal(0)
         set(value) {
             field = value
+            clickerApi.clicks = field
             clicksString = BigDecimalToShortStringConverter.getShortStringFor(field)
         }
 
     var clicksPerSec = BigDecimal(0)
         set(value) {
             field = value
+            clickerApi.clicksPerSec = field
             clicksPerSecString = BigDecimalToShortStringConverter.getShortStringFor(field, true)
         }
 

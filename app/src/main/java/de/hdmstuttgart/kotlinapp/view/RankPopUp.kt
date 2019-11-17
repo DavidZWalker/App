@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.RelativeLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
@@ -22,11 +23,17 @@ class RankPopUp(private var viewModel: RankViewModel? = null) : DialogFragment()
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.rank_popup, container, false)
         binding.viewModel = viewModel
+        binding.root.findViewById<Button>(R.id.rankUp).setOnClickListener { rankUp() }
         return binding.root
     }
 
     override fun onResume() {
         super.onResume()
         dialog?.window?.setLayout(1000, 1000)
+    }
+
+    fun rankUp() {
+        viewModel?.rankUp()
+        dismiss()
     }
 }

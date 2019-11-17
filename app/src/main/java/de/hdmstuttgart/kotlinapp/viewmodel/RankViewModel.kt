@@ -6,9 +6,13 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
 import de.hdmstuttgart.kotlinapp.R
+import de.hdmstuttgart.kotlinapp.model.RankUpHelper
+import de.hdmstuttgart.kotlinapp.util.ClickerAPI
 import de.hdmstuttgart.kotlinapp.util.ResourceProvider
 
 class RankViewModel : BaseObservable() {
+
+    private val maxRank = 3
 
     @Bindable
     var rank = 1
@@ -26,6 +30,17 @@ class RankViewModel : BaseObservable() {
         set(value) {
         field = value
         notifyPropertyChanged(BR.rankImage)
+    }
+
+    @Bindable
+    var canRankUp : Boolean = false
+        get() {
+            return ClickerAPI.getInstance().clicks >= RankUpHelper.getNeededClicksForNextRank(rank)
+        }
+
+    fun rankUp() {
+        if (rank < maxRank)
+            rank++
     }
 
     private fun getRankImageForCurrentRank() : Drawable {
