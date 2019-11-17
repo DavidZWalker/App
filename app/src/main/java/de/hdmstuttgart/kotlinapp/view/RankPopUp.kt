@@ -32,7 +32,7 @@ class RankPopUp(private var viewModel: RankViewModel? = null) : DialogFragment()
         dialog?.window?.setLayout(1000, 1000)
     }
 
-    fun rankUp() {
+    private fun rankUp() {
         viewModel?.rankUp()
         dismiss()
     }
