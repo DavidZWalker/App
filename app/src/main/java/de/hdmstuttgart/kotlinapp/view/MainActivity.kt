@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import de.hdmstuttgart.kotlinapp.R
 import de.hdmstuttgart.kotlinapp.databinding.ActivityMainBinding
 import de.hdmstuttgart.kotlinapp.model.AutoClickers
+import de.hdmstuttgart.kotlinapp.util.ResourceProvider
 import de.hdmstuttgart.kotlinapp.viewmodel.ClickerViewModel
 import java.math.BigDecimal
 
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        ResourceProvider.context = applicationContext
     }
 
     override fun onStart() {

@@ -5,6 +5,7 @@ package de.hdmstuttgart.kotlinapp.view
                 import android.view.LayoutInflater
                 import android.view.View
                 import android.view.ViewGroup
+        import android.widget.ImageView
         import androidx.databinding.DataBindingUtil
                 import de.hdmstuttgart.kotlinapp.R
         import de.hdmstuttgart.kotlinapp.databinding.RankBadgeFragmentBinding

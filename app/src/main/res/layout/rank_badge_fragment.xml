@@ -16,7 +16,7 @@
             android:focusableInTouchMode="true">
 
             <ImageView
-                android:id="@+id/rank"
+                android:id="@+id/rankBadgeBackground"
                 android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:clickable="false"
                 android:focusable="false">
 
@@ -46,22 +46,23 @@
                     android:focusable="false"/>
 
                 <ImageView
-                    android:id="@+id/rank1"
+                    android:id="@+id/rankImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ic_rank_1"
                     android:clickable="false"
-                    android:focusable="false"/>
+                    android:focusable="false"
+                    android:layout_gravity="center"
+                    android:background="@{viewModel.rankImage}"/>
 
                 <TextView
+                    android:id="@+id/rankNumberTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{viewModel.rank}"
+                    android:text="@{String.valueOf(viewModel.rank)}"
                     android:textColor="@color/primaryColor"
                     android:textSize="45sp"
                     android:textStyle="bold"
                     android:layout_gravity="center"
-                    android:layout_marginTop="-15dp"
                     android:clickable="false"
                     android:focusable="false"/>
 

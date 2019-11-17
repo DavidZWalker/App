@@ -1,15 +1,35 @@
 package de.hdmstuttgart.kotlinapp.viewmodel
 
+import android.graphics.drawable.Drawable
+import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
+import de.hdmstuttgart.kotlinapp.R
+import de.hdmstuttgart.kotlinapp.util.ResourceProvider
 
 class RankViewModel : BaseObservable() {
 
     @Bindable
-    var rank = "1"
+    var rank = 1
         set(value) {
             field = value
+            rankImage = getRankImageForCurrentRank()
             notifyPropertyChanged(BR.rank)
         }
+
+    @Bindable
+    var rankImage : Drawable? = null
+        get() {
+            return getRankImageForCurrentRank()
+        }
+        set(value) {
+        field = value
+        notifyPropertyChanged(BR.rankImage)
+    }
+
+    private fun getRankImageForCurrentRank() : Drawable {
+        val drawableId = ResourceProvider.getResourceIdByName("ic_rank_$rank", "drawable")
+        return ResourcesCompat.getDrawable(ResourceProvider.getResources(), drawableId, null)!!
+    }
 }
